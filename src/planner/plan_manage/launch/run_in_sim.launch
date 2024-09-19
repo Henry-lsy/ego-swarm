@@ -17,12 +17,13 @@
 
   <!-- number of moving objects -->
   <arg name="obj_num" value="10" />
-
+  
+  <arg name="file_path" />
   <!-- main algorithm params -->
   <include file="$(find ego_planner)/launch/advanced_param.xml">
-
+    
     <arg name="drone_id" value="$(arg drone_id)"/>
-
+    <arg name="file_path" value="$(arg file_path)"/>
     <arg name="map_size_x_" value="$(arg map_size_x)"/>
     <arg name="map_size_y_" value="$(arg map_size_y)"/>
     <arg name="map_size_z_" value="$(arg map_size_z)"/>
@@ -61,7 +62,7 @@
     
     <!-- global waypoints -->
     <!-- It generates a piecewise min-snap traj passing all waypoints -->
-    <arg name="point_num" value="1" />
+    <arg name="point_num" value="3" />
 
     <arg name="point0_x" value="$(arg target_x)" />
     <arg name="point0_y" value="$(arg target_y)" />

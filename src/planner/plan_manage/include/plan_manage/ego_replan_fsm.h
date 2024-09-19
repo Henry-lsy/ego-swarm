@@ -79,6 +79,8 @@ namespace ego_planner
 
     bool flag_escape_emergency_;
 
+    std::string waypoint_file_;
+
     /* ROS utils */
     ros::NodeHandle node_;
     ros::Timer exec_timer_, safety_timer_;
@@ -97,6 +99,7 @@ namespace ego_planner
     void printFSMExecState();
 
     void readGivenWps();
+
     void planNextWaypoint(const Eigen::Vector3d next_wp);
     void getLocalTarget();
 

@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 2.8.3)
 project(ego_planner)
 
 set(CMAKE_BUILD_TYPE "Release")
-ADD_COMPILE_OPTIONS(-std=c++11 )
+# ADD_COMPILE_OPTIONS(-std=c++11 )
 ADD_COMPILE_OPTIONS(-std=c++14 )
 set(CMAKE_CXX_FLAGS_RELEASE "-O3 -Wall -g")
 
@@ -20,13 +20,14 @@ find_package(catkin REQUIRED COMPONENTS
   traj_utils
   message_generation
   cv_bridge
+  yaml_utils
 )
 
 # catkin_package(CATKIN_DEPENDS message_runtime)
 catkin_package(
  INCLUDE_DIRS include
  LIBRARIES ego_planner
- CATKIN_DEPENDS plan_env path_searching bspline_opt traj_utils 
+ CATKIN_DEPENDS plan_env path_searching bspline_opt traj_utils yaml_utils
 #  DEPENDS system_lib
 )
 

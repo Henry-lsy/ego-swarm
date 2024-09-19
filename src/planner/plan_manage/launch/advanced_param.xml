@@ -36,7 +36,7 @@
 
   <arg name="flight_type"/>
   <arg name="use_distinctive_trajs"/>
-
+  <arg name="file_path" />
   <arg name="obj_num_set"/>
 
   <arg name="drone_id"/>
@@ -67,6 +67,8 @@
     <param name="fsm/emergency_time" value="1.0" type="double"/>
     <param name="fsm/realworld_experiment" value="false"/>
     <param name="fsm/fail_safe" value="true"/>
+
+    <param name="fsm/waypoint_file" value="$(arg file_path)" type="string"/>
 
     <param name="fsm/waypoint_num" value="$(arg point_num)" type="int"/>
     <param name="fsm/waypoint0_x" value="$(arg point0_x)" type="double"/>

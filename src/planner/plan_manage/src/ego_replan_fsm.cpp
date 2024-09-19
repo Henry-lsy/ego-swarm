@@ -1,5 +1,6 @@
 
 #include <plan_manage/ego_replan_fsm.h>
+#include <yaml_utils.hpp>
 
 namespace ego_planner
 {
@@ -24,13 +25,22 @@ namespace ego_planner
 
     have_trigger_ = !flag_realworld_experiment_;
 
-    nh.param("fsm/waypoint_num", waypoint_num_, -1);
-    for (int i = 0; i < waypoint_num_; i++)
-    {
-      nh.param("fsm/waypoint" + to_string(i) + "_x", waypoints_[i][0], -1.0);
-      nh.param("fsm/waypoint" + to_string(i) + "_y", waypoints_[i][1], -1.0);
-      nh.param("fsm/waypoint" + to_string(i) + "_z", waypoints_[i][2], -1.0);
+    if (!nh.getParam("fsm/waypoint_file", waypoint_file_)) {
+        ROS_INFO("Failed to retrieve parameter 'file_path', read waypoints from launch file");
+        nh.param("fsm/waypoint_num", waypoint_num_, -1);
+        for (int i = 0; i < waypoint_num_; i++)
+        {
+          nh.param("fsm/waypoint" + to_string(i) + "_x", waypoints_[i][0], -1.0);
+          nh.param("fsm/waypoint" + to_string(i) + "_y", waypoints_[i][1], -1.0);
+          nh.param("fsm/waypoint" + to_string(i) + "_z", waypoints_[i][2], -1.0);
+        }
     }
+    else
+    {
+        readWaypointsFromFile(waypoint_file_, waypoints_);
+        std::cout << "read waypoints successful" << std::endl;
+    }
+   
 
     /* initialize main modules */
     visualization_.reset(new PlanningVisualization(nh));

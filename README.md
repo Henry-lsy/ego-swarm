@@ -1,3 +1,52 @@
+# 接下来是增加的内容
+
+增加了record_odometry这个包，这个包可以用来记录指定odom topic的消息，并存在指定位置，通过下述方法配置即可！！！
+## 编译注意事项
+在编译的过程，会遇到yaml-cpp中的.os文件或者.a文件找不到的情况，需要自己
+
+sudo updatedb
+
+locate yaml-cpp
+
+上述两行指令可以找到对应的路径地址，将其替换到 
+
+ego-planner-swarm/src/planner/yaml_utils/CMakeLists.txt中的链接位置即可。
+如果还有问题，可以直接进行源码安装，步骤如下：
+克隆yaml-cpp的仓库：
+
+git clone https://github.com/jbeder/yaml-cpp.git
+cd yaml-cpp
+编译并安装：
+
+mkdir build
+cd build
+cmake ..
+make
+sudo make install
+
+## 使用流程
+
+采集点位：（记住话题前面的"_"!!!!）
+
+rosrun record_odometry odom_listener.py _odom_topic:="/drone1/odom" _file_path:="/home/henry/waypoints.yaml"
+
+然后根据终端输出内容进行操作！！！
+
+关于ego_swarm中读取文件的设置，请仔细阅读这三个文件中的改动内容。
+
+ego-planner-swarm/src/planner/plan_manage/launch/swarm_large.launch
+ego-planner-swarm/src/planner/plan_manage/launch/run_in_sim.launch
+ego-planner-swarm/src/planner/plan_manage/launch/advanced_param.xml
+
+正常情况下，启动
+
+roslaunch ego_planner swarm_large.launch
+可以看到如下的点位输出。
+
+
+![alt text](image.png)
+
+
 # Quick Start within 3 Minutes 
 Compiling tests passed on ubuntu **16.04, 18.04, and 20.04** with ros installed.
 You can just execute the following commands one by one.
