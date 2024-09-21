@@ -712,7 +712,26 @@ Maps::generate(int type)
       std::srand(info.seed);
       Maze3DGen();
       break;
+    case 5:
+      ReadFromFile();
+      break;
   }
+}
+
+void 
+Maps::ReadFromFile()
+{
+  std::string pcd_file_path;
+  info.nh_private->getParam("pcd_path", pcd_file_path);
+  // ROS_INFO("the number of points before optimization is %d", info.cloud->width);
+  if (pcl::io::loadPCDFile<pcl::PointXYZ> (pcd_file_path, *info.cloud) == -1) //* load the file
+  {
+    // PCL_ERROR ("Couldn't read pcd file %s.\n", pcd_file_path);
+    std::cout << "pcd file path is" << pcd_file_path << std::endl;
+  }
+
+  pcl2ros();
+
 }
 
 pcl::PointXYZ

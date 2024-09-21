@@ -1,0 +1,24 @@
+<launch>
+    <arg name="map_size_x"/>
+    <arg name="map_size_y"/>
+    <arg name="map_size_z"/>
+    <arg name="pcd_path"/>
+
+    <node pkg="mockamap" type="mockamap_node" name="mockamap_node" output="screen">  
+        <remap from="/mock_map" to="/map_generator/global_cloud"/>
+        <param name="seed" type="int" value="127"/>
+        <param name="update_freq" type="double" value="0.5"/>
+        <param name="resolution" type="double" value="0.01"/>
+        <param name="x_length" value="$(arg map_size_x)"/>
+        <param name="y_length" value="$(arg map_size_y)"/>
+        <param name="z_length" value="$(arg map_size_z)"/>
+
+        <param name="type" type="int" value="5"/>
+        <param name="pcd_path" value="$(arg pcd_path)"/>
+        
+        <param name="complexity"    type="double" value="0.05"/>
+        <param name="fill"          type="double" value="0.12"/>
+        <param name="fractal"       type="int"    value="1"/>
+        <param name="attenuation"   type="double" value="0.1"/>
+    </node> 
+</launch>

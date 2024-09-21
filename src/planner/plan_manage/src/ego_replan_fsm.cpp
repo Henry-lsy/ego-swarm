@@ -37,7 +37,10 @@ namespace ego_planner
     }
     else
     {
-        readWaypointsFromFile(waypoint_file_, waypoints_);
+
+        int waypoints_num = 0;
+        readWaypointsFromFile(waypoint_file_, waypoints_, waypoints_num);
+        waypoint_num_ = waypoints_num;
         std::cout << "read waypoints successful" << std::endl;
     }
    

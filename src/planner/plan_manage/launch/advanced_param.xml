@@ -3,6 +3,9 @@
   <arg name="map_size_y_"/>
   <arg name="map_size_z_"/>
 
+  <arg name="map_size_x_offset_"/>
+  <arg name="map_size_y_offset_"/>
+
   <arg name="odometry_topic"/>
   <arg name="camera_pose_topic"/>
   <arg name="depth_topic"/>
@@ -61,7 +64,7 @@
     <!-- planning fsm -->
     <param name="fsm/flight_type" value="$(arg flight_type)" type="int"/>
     <param name="fsm/thresh_replan_time" value="1.0" type="double"/>
-    <param name="fsm/thresh_no_replan_meter" value="1.0" type="double"/>
+    <param name="fsm/thresh_no_replan_meter" value="0.6" type="double"/>
     <param name="fsm/planning_horizon" value="$(arg planning_horizon)" type="double"/> <!--always set to 1.5 times grater than sensing horizen-->
     <param name="fsm/planning_horizen_time" value="3" type="double"/>
     <param name="fsm/emergency_time" value="1.0" type="double"/>
@@ -91,6 +94,8 @@
     <param name="grid_map/map_size_x"   value="$(arg map_size_x_)" /> 
     <param name="grid_map/map_size_y"   value="$(arg map_size_y_)" /> 
     <param name="grid_map/map_size_z"   value="$(arg map_size_z_)" /> 
+    <param name="grid_map/map_size_x_offset"   value="$(arg map_size_x_offset_)" /> 
+    <param name="grid_map/map_size_y_offset"   value="$(arg map_size_y_offset_)" /> 
     <param name="grid_map/local_update_range_x"  value="5.5" /> 
     <param name="grid_map/local_update_range_y"  value="5.5" /> 
     <param name="grid_map/local_update_range_z"  value="4.5" /> 

@@ -2,7 +2,7 @@
 #include <iostream>
 
 
-void readWaypointsFromFile(const std::string & path, double waypoints[50][3])
+void readWaypointsFromFile(const std::string & path, double waypoints[50][3], int& waypoints_num)
 {
     YAML::Node node = YAML::LoadFile(path);
     for(int i = 0; i < node.size(); i++)
@@ -12,4 +12,5 @@ void readWaypointsFromFile(const std::string & path, double waypoints[50][3])
       waypoints[i][2] = node[i]["z"].as<double>();
       std::cout << "get waypoints " << waypoints[i][0] << " "<< waypoints[i][1] <<" "<< waypoints[i][2] << std::endl;
     }
+    waypoints_num = node.size();
 }

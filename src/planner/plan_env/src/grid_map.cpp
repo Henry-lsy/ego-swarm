@@ -9,10 +9,13 @@ void GridMap::initMap(ros::NodeHandle &nh)
 
   /* get parameter */
   double x_size, y_size, z_size;
+  double x_size_offset, y_size_offset;
   node_.param("grid_map/resolution", mp_.resolution_, -1.0);
   node_.param("grid_map/map_size_x", x_size, -1.0);
   node_.param("grid_map/map_size_y", y_size, -1.0);
   node_.param("grid_map/map_size_z", z_size, -1.0);
+  node_.param("grid_map/map_size_x_offset", x_size_offset, -1.0);
+  node_.param("grid_map/map_size_y_offset", y_size_offset, -1.0);
   node_.param("grid_map/local_update_range_x", mp_.local_update_range_(0), -1.0);
   node_.param("grid_map/local_update_range_y", mp_.local_update_range_(1), -1.0);
   node_.param("grid_map/local_update_range_z", mp_.local_update_range_(2), -1.0);
@@ -59,7 +62,7 @@ void GridMap::initMap(ros::NodeHandle &nh)
   }
 
   mp_.resolution_inv_ = 1 / mp_.resolution_;
-  mp_.map_origin_ = Eigen::Vector3d(-x_size / 2.0, -y_size / 2.0, mp_.ground_height_);
+  mp_.map_origin_ = Eigen::Vector3d(-x_size / 2.0 + x_size_offset, -y_size / 2.0 + y_size_offset, mp_.ground_height_);
   mp_.map_size_ = Eigen::Vector3d(x_size, y_size, z_size);
 
   mp_.prob_hit_log_ = logit(mp_.p_hit_);

@@ -66,4 +66,4 @@
 //     YAML::Node node;    
 // };
 
-void readWaypointsFromFile(const std::string & path,  double waypoints[50][3]);
+void readWaypointsFromFile(const std::string & path, double waypoints[50][3], int& waypoints_num);
